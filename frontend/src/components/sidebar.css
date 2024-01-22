@@ -1,0 +1,8 @@
+.sidebar{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.active{
+    background-color: #FFF8B7;
+    color: #262626;
+    font-weight: 500;
+}
