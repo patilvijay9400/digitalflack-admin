@@ -6,14 +6,16 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Category from "./pages/Category";
 import Products from "./pages/Products";
+import AddCategory from "./pages/AddCategory";
 
 function App() {
-  const [login, setlogin] = useState(true);
+  const [login, setLogin] = useState(false);
+  const [categories, setCategories] = useState([]);
   return (
     <BrowserRouter>
       {login ? (
         <section>
-          <Header />
+          <Header setLogin={setLogin} />
           <div className="row mx-0 main-container">
             <div className="col-md-2 ps-0">
               <Sidebar />
@@ -24,13 +26,14 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="category" element={<Category />} />
                   <Route path="products" element={<Products />} />
+                  <Route path="add-category" element={<AddCategory setCategories={setCategories} />} />
                 </Routes>
               </aside>
             </div>
           </div>
         </section>
       ) : (
-        <Login setLogin={setlogin} />
+        <Login setLogin={setLogin} />
       )}
     </BrowserRouter>
   );

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
-const Header = () => {
+const Header = ({setLogin}) => {
   const [showLogout, setShowLogout] = useState(false);
 
   const handleLogout = () => {
-    setShowLogout((prevShowLogout) => !prevShowLogout);
+    setShowLogout(true);
+  };
+
+  const confirmLogout = () => {
+    setLogin(false);
+    setShowLogout(false);
   };
   return (
     <div>
@@ -34,29 +39,37 @@ const Header = () => {
         </div>
         {/* <!-- Modal --> */}
         <div
-          class="modal fade"
+          className="modal fade"
           id="logoutModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="logoutModalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog">
-            <div class="modal-content py-4">
-              <div class="modal-body text-center">
-                <h3><i class="fa-solid fa-triangle-exclamation text-danger"></i> Log Out</h3>
+          <div className="modal-dialog">
+            <div className="modal-content py-4">
+              <div className="modal-body text-center">
+                <h3>
+                  <i className="fa-solid fa-triangle-exclamation text-danger"></i>{" "}
+                  Log Out
+                </h3>
                 <p>Are you sure you want to log out ?</p>
-                <div class="text-center">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary rounded-pill me-3"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn primary-bg text-white rounded-pill">
-                  Confirm
-                </button>
-              </div>
+                <div className="text-center">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary rounded-pill me-3"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    className="btn primary-bg text-white rounded-pill"
+                    onClick={confirmLogout}
+                    data-bs-dismiss="modal"
+                  >
+                    Confirm
+                  </button>
+                </div>
               </div>
             </div>
           </div>

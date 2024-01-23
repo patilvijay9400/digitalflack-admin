@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./src/routes/auth');
 const categoryRoutes = require('./src/routes/category');
@@ -12,12 +13,12 @@ const PORT = process.env.PORT || 3000;
 const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
 
 // Update MongoDB connection options
-const mongooseOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
+const mongooseOptions = {};
 
 app.use(express.json());
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Use the authRoutes middleware
 app.use('/auth', authRoutes);
