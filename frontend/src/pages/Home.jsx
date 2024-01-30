@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div className='d-flex align-items-center justify-content-center h-100 flex-column'>
+    <div className='d-flex align-items-center justify-content-center h-100 flex-column home'>
           <img
             src={process.env.PUBLIC_URL + "/images/logo.svg"}
             alt="logo"

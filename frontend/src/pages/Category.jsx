@@ -103,7 +103,7 @@ const Category = () => {
   );
   return (
     <div>
-      <header className="d-flex justify-content-between">
+      <header className="d-flex justify-content-between flex-wrap gap-2">
         <h4>
           <i className="fa-solid fa-table-cells me-2"></i> Category
         </h4>

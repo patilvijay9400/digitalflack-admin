@@ -17,10 +17,10 @@ function App() {
         <section>
           <Header setLogin={setLogin} />
           <div className="row mx-0 main-container">
-            <div className="col-md-2 ps-0">
+            <div className="col-2 px-0">
               <Sidebar />
             </div>
-            <div className="col-md-10">
+            <div className="col-10">
               <aside className="pages h-100 py-3">
                 <Routes>
                   <Route path="/" element={<Home />} />

@@ -89,13 +89,13 @@ const Login = ({ setLogin }) => {
           <label htmlFor="text" className="form-label font-27">
             Email address
           </label>
-          <input type="text" value={username} autoComplete="current-username" onChange={(e) => setUsername(e.target.value)} className="form-control" />
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" />
         </div>
         <div className="mb-3 position-relative">
           <label htmlFor="password" className="form-label font-27">
             Password
           </label>
-          <input type="password" value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)}  className="form-control" id="password" />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  className="form-control" id="password" />
         </div>
         <div className="mb-3 text-end mb-4">
           {/* <!-- Button trigger modal --> */}

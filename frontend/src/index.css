@@ -117,4 +117,21 @@ body{
   .login-container .form-container {
     width: 100%;
   }
+  .login-container .form-container img, .home img{
+    width: 200px;
+  }
+  .font-32 {
+    font-size: 20px;
+  }
+  
+  .font-27 {
+    font-size: 16px;
+  }
+  
+  .font-24 {
+    font-size: 14px;
+  }
+  .navbar .navbar-brand img{
+    height: 32px;
+  }
 }
