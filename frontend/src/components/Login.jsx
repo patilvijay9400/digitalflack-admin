@@ -21,54 +21,52 @@ const Login = ({ setLogin }) => {
       });
 
       if (response.ok) {
-        debugger
         // Login successful
         const data = await response.json();
-        console.log('Login successful, access token:', data.token);
         setLogin(true);
         localStorage.setItem("accessToken", data.token);
       } else {
         const errorData = await response.json();
-        if (response.status === 401 && errorData.message === "TokenExpiredError") {
-          // Token expired, try refreshing
+        if (
+          response.status === 401 &&
+          errorData.message === "TokenExpiredError"
+        ) {
           await handleTokenRefresh();
         } else {
-          // Handle other unsuccessful login scenarios
           console.error("Login failed:", errorData.message);
         }
       }
     } catch (error) {
-      // Handle network or other errors
       console.error("Error during login:", error);
     }
   };
 
   const handleTokenRefresh = async () => {
     try {
-      console.log("Refreshing token...");
       const accessToken = localStorage.getItem("accessToken");
 
-      const refreshResponse = await fetch("http://localhost:3000/auth/refresh", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const refreshResponse = await fetch(
+        "http://localhost:3000/auth/refresh",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
       if (refreshResponse.ok) {
         // Token refreshed successfully
         const data = await refreshResponse.json();
         localStorage.setItem("accessToken", data.accessToken);
 
-        // Retry the login after token refresh
         await handleLogin();
       } else {
         // Handle unsuccessful token refresh
         console.error("Token refresh failed");
       }
     } catch (error) {
-      // Handle network or other errors during token refresh
       console.error("Error during token refresh:", error);
     }
   };
@@ -89,13 +87,24 @@ const Login = ({ setLogin }) => {
           <label htmlFor="text" className="form-label font-27">
             Email address
           </label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" />
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="form-control"
+          />
         </div>
         <div className="mb-3 position-relative">
           <label htmlFor="password" className="form-label font-27">
             Password
           </label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  className="form-control" id="password" />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-control"
+            id="password"
+          />
         </div>
         <div className="mb-3 text-end mb-4">
           {/* <!-- Button trigger modal --> */}
@@ -108,7 +117,11 @@ const Login = ({ setLogin }) => {
             Forgot Password?
           </button>
         </div>
-        <button type="submit" onClick={handleLogin} className="btn-lg primary-btn w-100 font-32">
+        <button
+          type="submit"
+          onClick={handleLogin}
+          className="btn-lg primary-btn w-100 font-32"
+        >
           Submit
         </button>
       </form>
@@ -144,17 +157,20 @@ const Login = ({ setLogin }) => {
                   <input type="email" className="form-control h-90" />
                 </div>
                 <div className="mb-3 mb-4 d-flex flex-column">
-                <button type="button" className="btn-lg primary-btn font-32 mb-2">
-                Request reset link
-                </button>
-                <button
-                type="button"
-                className="border-0 text-decoration-underline gray-text font-24"
-                data-bs-dismiss="modal"
-              >
-                Back to log in
+                  <button
+                    type="button"
+                    className="btn-lg primary-btn font-32 mb-2"
+                  >
+                    Request reset link
                   </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="border-0 text-decoration-underline gray-text font-24"
+                    data-bs-dismiss="modal"
+                  >
+                    Back to log in
+                  </button>
+                </div>
               </form>
             </div>
           </div>

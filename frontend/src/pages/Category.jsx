@@ -31,7 +31,7 @@ const Category = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`, // Include your JWT token here
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
