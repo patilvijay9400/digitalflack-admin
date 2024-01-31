@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Login = ({ setLogin }) => {
+const Login = ({ setLogin, openToast }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,6 +24,7 @@ const Login = ({ setLogin }) => {
         // Login successful
         const data = await response.json();
         setLogin(true);
+        openToast("Login Successfully ...!")
         localStorage.setItem("accessToken", data.token);
       } else {
         const errorData = await response.json();

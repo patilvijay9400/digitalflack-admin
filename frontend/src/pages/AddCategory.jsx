@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const AddCategory = ({ setCategories }) => {
+const AddCategory = ({ setCategories, openToast }) => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("active");
 
   const handleFormSubmit = async () => {
-    debugger;
     try {
       const accessToken = localStorage.getItem("accessToken");
 
@@ -24,6 +23,7 @@ const AddCategory = ({ setCategories }) => {
         // Category added successfully, update the list of categories
         const newCategory = await response.json();
         setCategories((prevCategories) => [...prevCategories, newCategory]);
+        openToast("New Category Added Successfully ...!")
       } else {
         // Handle unsuccessful category addition
         const errorData = await response.json();

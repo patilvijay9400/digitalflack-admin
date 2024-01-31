@@ -12,9 +12,10 @@ import {
   IconButton,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import TableSortLabel from "@mui/material/TableSortLabel";
 
-const Category = () => {
+const Category = ({openToast}) => {
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "" });
@@ -64,7 +65,7 @@ const Category = () => {
         setCategories((prevCategories) =>
           prevCategories.filter((category) => category._id !== categoryId)
         );
-        console.log(`Category with ID ${categoryId} deleted successfully`);
+        openToast(`Category with ID ${categoryId} deleted successfully`);
       } else {
         console.error("Failed to delete category:", response.statusText);
       }
@@ -152,7 +153,7 @@ const Category = () => {
                   Status
                 </TableSortLabel>
               </TableCell>
-              <TableCell>Action</TableCell>
+              <TableCell className="text-center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -162,10 +163,15 @@ const Category = () => {
                 <TableCell>{category.name}</TableCell>
                 <TableCell>{category.description}</TableCell>
                 <TableCell>{category.status}</TableCell>
-                <TableCell>
+                <TableCell className="text-center">
                   <IconButton onClick={() => handleDelete(category._id)}>
                     <DeleteIcon />
                   </IconButton>
+                  <Link to={`/edit-category/${category._id}`}>
+                    <IconButton className="ms-1">
+                      <EditIcon />
+                    </IconButton>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}
